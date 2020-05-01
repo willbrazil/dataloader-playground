@@ -1,0 +1,23 @@
+{
+  "name": "dataloader-playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "watch:gateway": "sleep 2 && nodemon gateway.js",
+    "watch:products": "nodemon products.js",
+    "watch:market": "nodemon market.js",
+    "watch:viewer": "nodemon viewer.js",
+    "watch": "concurrently -k \"yarn watch:viewer\" \"yarn watch:market\" \"yarn watch:gateway\" \"yarn watch:products\""
+  },
+  "dependencies": {
+    "@apollo/federation": "^0.14.1",
+    "@apollo/gateway": "^0.14.1",
+    "apollo-server": "^2.12.0",
+    "graphql": "^15.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.3"
+  }
+}
