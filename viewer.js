@@ -4,6 +4,7 @@ const { buildFederatedSchema } = require('@apollo/federation');
 const typeDefs = gql`
   type Query {
     viewer(id: ID!): User
+    viewers(ids: [ID!]): [User]
   }
 
   type User @key(fields: "id") {
@@ -16,10 +17,9 @@ const resolvers = {
     viewer(_, args) {
       return { id: args.id };
     },
-  },
-  User: {
-    __resolveReference(user, { fetchUserById }) {
-      return fetchUserById(user.id);
+
+    viewers(_, args) {
+      return args.ids.map((id) => ({ id }));
     },
   },
 };
